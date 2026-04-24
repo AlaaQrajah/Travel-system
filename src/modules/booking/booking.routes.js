@@ -5,7 +5,11 @@ const validateRequest = require("../../core/middlewares/validateRequest");
 
 const router = express.Router();
 
-router.post("/", validator.createBooking, validateRequest, controller.createBooking);
+router.get("/", controller.getAllBookings);
 router.get("/my-bookings", controller.getMyBookings);
+router.get("/:id", validator.bookingId, validateRequest, controller.getBookingById);
+router.post("/", validator.createBooking, validateRequest, controller.createBooking);
+router.put("/:id", validator.updateBooking, validateRequest, controller.updateBooking);
+router.delete("/:id", validator.bookingId, validateRequest, controller.deleteBooking);
 
 module.exports = router;
